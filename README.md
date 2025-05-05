@@ -1,4 +1,4 @@
-# Birthday Card for Mumma
+# Birthday Card
 
 This is a special digital birthday card created with love.
 

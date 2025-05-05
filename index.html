@@ -50,19 +50,16 @@
     }
     .gallery {
       display: flex;
-      flex-wrap: wrap;
+      overflow-x: auto;
       gap: 10px;
       padding-bottom: 10px;
       z-index: 3;
       position: relative;
-      justify-content: center;
     }
     .gallery img {
       width: calc(50% - 10px);
-      max-width: 300px;
       border-radius: 10px;
       transition: transform .3s;
-      margin-bottom: 10px;
     }
     .gallery img:hover {
       transform: scale(1.05);
@@ -124,31 +121,16 @@
       animation: flyPeacock 15s linear infinite;
     }
     @keyframes flyPeacock {
-      0% { transform: translateX(-50px); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(110vw); }
-    }
-    /* Make design responsive */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 3em;
-      }
-      .cartoon {
-        width: 60px;
-      }
-      .gallery img {
-        width: 100%;
-      }
-      .message {
-        font-size: 1em;
-      }
     }
   </style>
 </head>
 <body>
   <canvas id="confetti"></canvas>
   <!-- Cartoon images -->
-  <img src="images/krishna-cartoon.png" alt="Krishna" class="cartoon krishna">
-  <img src="images/radha-cartoon.png" alt="Radha" class="cartoon radha">
+  <img src="krishna-cartoon.png" alt="Krishna" class="cartoon krishna">
+  <img src="radha-cartoon.png" alt="Radha" class="cartoon radha">
   <div class="container">
     <h1>Happy Birthday Mumma! 🎂😊</h1>
     <div class="message">
@@ -165,14 +147,14 @@
     </div>
     <div id="countdown"></div>
     <div class="gallery">
-      <img src="images/ec3e6e68-82a1-4043-b6c5-d318244b5493.png" alt="Poolside Selfie">
-      <img src="images/f6c983e0-4a34-418c-9758-76c89298104b.png" alt="Cake Blowing">
-      <img src="images/71237879-58ee-4072-ada6-a5b53ae15e86.png" alt="Family Selfie">
-      <img src="images/c6ed6335-fd92-49e6-8886-c655f62fa5a0.png" alt="Park Moment">
-      <img src="images/afeba6c9-3e38-4e4c-995b-e0721253df3d.png" alt="Generations Together">
+      <img src="/mnt/data/ec3e6e68-82a1-4043-b6c5-d318244b5493.png" alt="Poolside Selfie">
+      <img src="f6c983e0-4a34-418c-9758-76c89298104b.png" alt="Cake Blowing">
+      <img src="71237879-58ee-4072-ada6-a5b53ae15e86.png" alt="Family Selfie">
+      <img src="c6ed6335-fd92-49e6-8886-c655f62fa5a0.png" alt="Park Moment">
+      <img src="afeba6c9-3e38-4e4c-995b-e0721253df3d.png" alt="Generations Together">
     </div>
-    <audio controls autoplay loop>
-      <source src="audio/tum_jiyo_hazaron_saal.mp3" type="audio/mpeg">
+    <audio controls autoplay>
+      <source src="tum_jiyo_hazaron_saal.mp3" type="audio/mpeg">
     </audio>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -180,15 +162,6 @@
     // Confetti burst on load
     const conf = confetti.create(document.getElementById('confetti'), { resize: true });
     conf({ particleCount: 200, spread: 150 });
-    
-    // Periodic confetti bursts
-    setInterval(() => {
-      conf({
-        particleCount: 50,
-        spread: 70,
-        origin: { y: Math.random() }
-      });
-    }, 3000);
 
     // Generate sparkle elements across page
     function createSparkle() {
@@ -230,10 +203,6 @@
     function updateCountdown() {
       const now = Date.now();
       const diff = targetDate - now;
-      if (diff <= 0) {
-        cdEl.textContent = "Happy Birthday!";
-        return;
-      }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -245,3 +214,4 @@
   </script>
 </body>
 </html>
+
